@@ -6,20 +6,37 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Note: Identifiable {
-    let id: UUID = UUID()
+@Model
+class Note: Identifiable {
+    var id: UUID = UUID()
     var date: Date
     var title: String
     var content: String
     
+    init(date: Date, title: String, content: String) {
+        self.date = date
+        self.title = title
+        self.content = content
+    }
+    
 }
 
 extension Date {
-    func DayMonthYear() -> String {
-        let format = DateFormatter()
-        
-        format.dateFormat = "dd MMM yyyy"
-        return format.string(from: self)
+    var onlyDate: Date {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: self)
+        return calendar.date(from: components)!
     }
 }
+
+
+//extension Date {
+//    func DayMonthYear() -> String {
+//        let format = DateFormatter()
+//
+//        format.dateFormat = "dd MMM yyyy"
+//        return format.string(from: self)
+//    }
+//}

@@ -9,6 +9,11 @@ import Foundation
 import SwiftUI
 
 struct NoteCardsView: View {
+    @Environment(\.modelContext) private var mContext
+
+    
+    var note: Note
+    
     var body: some View {
         
         VStack(alignment: .leading){
@@ -16,20 +21,24 @@ struct NoteCardsView: View {
             HStack{
                 Image(systemName: "calendar")
                     .font(.system(size: 20))
+                    
                 
                 
-                Text("Dia/Mês/Ano")
+                Text(note.date.formatted(date: .abbreviated, time: .omitted))
                     .font(.system(size: 20))
                 
-            }
+            } .foregroundStyle(Color.gray)
             
-            Text("TítuloDoDia")
+            Text(note.title)
                 .font(.title.bold())
+            
+            Text(note.content)
+            
             
         }
     }
 }
 
 #Preview {
-    NoteCardsView()
+    NoteCardsView(note: Note(date: Date(), title: "Title", content: "Im just a simple description of my day"))
 }
