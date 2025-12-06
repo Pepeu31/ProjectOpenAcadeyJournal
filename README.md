@@ -9,11 +9,11 @@ A maneira que as anotações são demostradas, na página incial, é destacando 
 
 # Principais Tópicos Contemplados
 
-<b>App Intents:</b> É possível realizar a criação de uma nova anatação através da utilização do ShortCut. Onde, graças a implementação de App Intents, é possível realizar uma "anotação rápida" (Quick Note), onde possibilita realizar essa ação mesmo que o app não esteja aberto 
+- <b>App Intents:</b> É possível realizar a criação de uma nova anatação através da utilização do ShortCut. Onde, graças a implementação de App Intents, é possível realizar uma "anotação rápida" (Quick Note), onde possibilita realizar essa ação mesmo que o app não esteja aberto 
 
-<b>* Tasks:</b> Utilizada para o carregamento das imagens de forma assíncrona.
+- <b>Tasks:</b> Utilizada para o carregamento das imagens de forma assíncrona.
 
-<b>* SwiftData:</b> Utilziado para realizar a persistência dos dados, ou seja, salvar as notas criadas pelo usuário, mesmo que ele saia do App.
+- <b>SwiftData:</b> Utilziado para realizar a persistência dos dados, ou seja, salvar as notas criadas pelo usuário, mesmo que ele saia do App.
 
-<b>* Extension:s</b> Utilizada para realizar a criação de um novo estilo de texto, e para a formatação da maneira em que a data da anotação seria utilizada. 
+- <b>Extension:s</b> Utilizada para realizar a criação de um novo estilo de texto, e para a formatação da maneira em que a data da anotação seria utilizada. 
 
