@@ -5,11 +5,7 @@ O projeto a seguir, consiste em um simples app de diário, que foi desenvolvido 
 
 O projeto contém duas principais telas, uma é a "Home", onde é possível adicionar uma nova anotação e visualizar as já adicionadas, e uma tela de criação de anotação, onde é possível definir a data, adicionar um título, o conteúdo que será escrito e uma imagem. 
 
-<br>
-
 A maneira que as anotações são demostradas, na página incial, é destacando a data que a anotação foi escrita, ou definida pelo usuário, o título da anotação, o conteúdo e a presença da imagem inserida . 
-
-<br>
 
 # Principais Tópicos Contemplados
 
