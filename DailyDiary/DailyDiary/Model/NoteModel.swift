@@ -32,11 +32,3 @@ extension Date {
 }
 
 
-//extension Date {
-//    func DayMonthYear() -> String {
-//        let format = DateFormatter()
-//
-//        format.dateFormat = "dd MMM yyyy"
-//        return format.string(from: self)
-//    }
-//}
