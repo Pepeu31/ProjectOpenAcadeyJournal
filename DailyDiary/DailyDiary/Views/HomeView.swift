@@ -21,22 +21,23 @@ struct HomeView: View {
                 ScrollView{
                     ForEach(notes) {note in
                         NoteCardsView(note: note)
-                            
+                        
                     }
-                } .scrollIndicators(.hidden)
-                    .fullScreenCover(isPresented: $showSheet) {
-                        AddNoteView()
-                    }
-                    .navigationTitle("Daily Diary")
-                    .toolbar {
-                        ToolbarItem(placement: .confirmationAction) {
-                            Button{
-                                showSheet.toggle()
-                            } label: {
-                                Image(systemName: "plus")
-                            }
+                }
+                .scrollIndicators(.hidden)
+                .fullScreenCover(isPresented: $showSheet) {
+                    AddNoteView()
+                }
+                .navigationTitle("Daily Diary")
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button{
+                            showSheet.toggle()
+                        } label: {
+                            Image(systemName: "plus")
                         }
                     }
+                }
             }
         }
     }

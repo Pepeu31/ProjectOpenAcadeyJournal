@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
 
 @Model
 class Note: Identifiable {
@@ -14,11 +15,13 @@ class Note: Identifiable {
     var date: Date
     var title: String
     var content: String
+    var image: Data?
     
-    init(date: Date, title: String, content: String) {
+    init(date: Date, title: String, content: String, image: Data? = nil) {
         self.date = date
         self.title = title
         self.content = content
+        self.image = image
     }
     
 }
@@ -28,6 +31,14 @@ extension Date {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year, .month, .day], from: self)
         return calendar.date(from: components)!
+    }
+}
+
+extension Text {
+    func textTitleStyle () -> some View {
+        self
+            .font(.title)
+            .bold()
     }
 }
 

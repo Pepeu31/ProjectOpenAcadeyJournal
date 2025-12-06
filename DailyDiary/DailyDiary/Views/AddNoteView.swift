@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import PhotosUI
 
 struct AddNoteView: View {
     @Environment(\.modelContext) private var mContext
@@ -15,44 +16,75 @@ struct AddNoteView: View {
     @State var title: String = ""
     @State var content: String = ""
     @State var date: Date = Date.now.onlyDate
+    @State var image: Data?
+    @State var pickerImage: PhotosPickerItem?
     
     
     var body: some View {
         NavigationStack{
-            VStack(alignment: .leading){
+            ScrollView{
+                VStack(alignment: .leading){
+                    
+                    DatePicker("", selection: $date, in: Date.now..., displayedComponents: .date)
+                    
+                    Text("Title:").textTitleStyle()
+                    TextField("Insert your title...", text: $title)
+                    
+                    Text("Notes:").textTitleStyle()
+                    TextField("How was your day :)...", text: $content)
+                    
+                    Spacer()
+                    VStack{
+                        Spacer()
+                        PhotosPicker("Add a Photo",
+                                     selection: $pickerImage,
+                                     matching: .images)
+                        .buttonStyle(.glass)
+                        .foregroundStyle(.blue)
+                    }
+                    
+                    VStack(alignment: .center) {
+                        Spacer()
+                        if image != nil {
+                            Image(uiImage: UIImage(data: image!)!)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 200, height: 200)
+                        }
+                    }
+                }
+                .padding()
                 
-                DatePicker("", selection: $date, in: Date.now..., displayedComponents: .date)
+                Button {
+                    mContext.insert(Note(date: date, title: title, content: content, image: image))
+                    
+                    dismiss()
+                } label: {
+                    Text("Add Note")
+                        .frame(width: 100, height: 50)
+                        .foregroundStyle(Color.white)
+                        .background(Color.blue)
+                        .cornerRadius(20)
+                }
                 
-                Text("Title:")
-                TextField("Insert your title...", text: $title)
-                
-                Text("Notes:")
-                TextField("How was your day :)...", text: $content)
-                
-                
+                Spacer()
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button {
+                                dismiss()
+                            } label: {
+                                Image(systemName: "xmark")
+                                    .font(.system(size: 20))
+                            }
+                        }
+                    }
             }
-            .padding()
-            
-            Button {
-                mContext.insert(Note(date: date, title: title, content: content))
-                
-                dismiss()
-            } label: {
-                Text("Add Note")
-                    .frame(width: 100, height: 50)
-                    .foregroundStyle(Color.white)
-                    .background(Color.blue)
-                    .cornerRadius(20)
-            }
-            
-            Spacer()
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 20))
+            .onChange(of: pickerImage) {
+                Task {
+                    if let loaded = try? await pickerImage?.loadTransferable(type: Data.self) {
+                        image = loaded
+                    } else {
+                        print("Failed")
                     }
                 }
             }
